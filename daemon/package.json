@@ -1,0 +1,8 @@
+{
+  "name": "mbed-github-notifier-daemon",
+  "description": "Daemon for the mbed-github-notifier project",
+  "author": "Gauthier B <gogoprog@gmail.com>",
+  "dependencies": {
+    "github": "^0.2.4"
+  }
+}
