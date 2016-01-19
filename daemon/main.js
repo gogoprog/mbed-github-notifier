@@ -11,10 +11,16 @@ var github = new GitHubApi({
     }
 });
 
+github.authenticate({
+    type: "oauth",
+    key: "e582a76f48a5fcec7bc9",
+    secret: "fcc1fa6d9daed8a48150475f851225f3c2287942"
+});
+
 var userName = process.argv[2] || "gogoprog";
 
-var wstream = fs.createWriteStream('/tmp/mytty');
-var currentData = {};
+var wstream = fs.createWriteStream('/dev/ttyACM0');
+var currentData = {followers:0};
 
 function getFollowers()
 {
@@ -24,6 +30,11 @@ function getFollowers()
         },
         function(err, res)
         {
+            if(err)
+            {
+                console.log(err);
+            }
+
             currentData.followers = res.length;
         }
     );
@@ -31,8 +42,14 @@ function getFollowers()
 
 function mainLoop()
 {
+    var text_content;
+
     getFollowers();
-    wstream.write(JSON.stringify(currentData) + "\n");
+    //currentData.followers++;
+
+    text_content = JSON.stringify(currentData);
+    console.log(text_content);
+    wstream.write(text_content + "\n");
     setTimeout(mainLoop, 2000);
 }
 
