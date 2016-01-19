@@ -20,7 +20,10 @@ github.authenticate({
 var userName = process.argv[2] || "gogoprog";
 
 var wstream = fs.createWriteStream('/dev/ttyACM0');
-var currentData = {followers:0};
+var currentData = {
+    followers: 0,
+    userName: userName
+};
 
 function getFollowers()
 {
