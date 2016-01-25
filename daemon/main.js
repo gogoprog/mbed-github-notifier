@@ -52,7 +52,7 @@ function mainLoop()
 
     text_content = JSON.stringify(currentData);
     console.log(text_content);
-    wstream.write(text_content + "\n");
+    wstream.write(text_content + "#");
     setTimeout(mainLoop, 2000);
 }
 
